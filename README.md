@@ -4,6 +4,8 @@
 
 Simple emoji search!
 
+![](https://res.cloudinary.com/urre/image/upload/v1503256224/vxmejipru91vn54od2mn.png)
+
 ## Status
 Wip
 
