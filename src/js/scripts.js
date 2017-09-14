@@ -21,8 +21,7 @@ fetch(endpoint)
 	.then(
 		setTimeout(() => {
 			renderResult(emojis)
-			console.log(emojis);
-		}, 100)
+		}, 500)
 	)
 	.catch(err => {})
 
