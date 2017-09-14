@@ -1,6 +1,6 @@
 import Clipboard from 'clipboard'
 
-const endpoint = 'https://rawgit.com/github/gemoji/master/db/emoji.json'
+const endpoint = `${window.location.href}/data/emojis.json`
 const emojis = []
 const searchInput = document.querySelector('.search')
 const searchForm = document.querySelector('.search-form')
@@ -21,6 +21,7 @@ fetch(endpoint)
 	.then(
 		setTimeout(() => {
 			renderResult(emojis)
+			console.log(emojis);
 		}, 100)
 	)
 	.catch(err => {})
