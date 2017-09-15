@@ -1,5 +1,6 @@
 # Emoji fun
 
+[![Build Status](https://travis-ci.org/urre/emojifun.svg?branch=master)](https://travis-ci.org/urre/emojifun)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
 
 Simple emoji search!
