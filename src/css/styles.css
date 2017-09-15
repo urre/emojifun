@@ -155,14 +155,12 @@ a {
 	}
 }
 
-.emoji-result-clipboard {
-	display: none;
-}
-
 .emoji-result-emoji {
 	font-size: 96px;
 	line-height: 1;
 	margin-bottom: 0;
+	border: none;
+	outline: none;
 }
 
 ul {

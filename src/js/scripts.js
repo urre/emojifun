@@ -63,7 +63,7 @@ function renderEmoji(e) {
 	const emoj = e.target.innerText
 	const description = e.target.dataset.description
 	const slug = slugify(e.target.dataset.description)
-	emojiResult.innerHTML = emoj
+	emojiResult.value = emoj
 	emojiResultDescription.innerHTML = description
 	emojiResultClipboard.value = emoj
 	buttonEmojpedia.href = `https://emojipedia.org/${slug}`
@@ -75,7 +75,7 @@ function searchEmoji() {
 }
 
 const initClipboard = () => {
-	const clipboard = new Clipboard('.button-copy')
+	var clipboard = new Clipboard('.button-copy')
 
 	clipboard.on('success', function(e) {
 		buttonCopy.innerHTML = `Copied ${e.text} to clipboard`
@@ -93,5 +93,7 @@ const initClipboard = () => {
 searchInput.addEventListener('change', searchEmoji)
 searchInput.addEventListener('keyup', searchEmoji)
 emojiSuggestions.addEventListener('click', renderEmoji)
+
+
 
 initClipboard()
