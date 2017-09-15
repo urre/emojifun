@@ -94,6 +94,4 @@ searchInput.addEventListener('change', searchEmoji)
 searchInput.addEventListener('keyup', searchEmoji)
 emojiSuggestions.addEventListener('click', renderEmoji)
 
-
-
 initClipboard()
