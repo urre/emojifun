@@ -4,12 +4,9 @@
 
 Simple emoji search!
 
-![](https://res.cloudinary.com/urre/image/upload/v1503256224/vxmejipru91vn54od2mn.png)
+![](https://res.cloudinary.com/urre/image/upload/v1505463469/nz0t1h9xozqipkatbiad.png)
 
-## Status
-Wip
-
-## Usage
+## Dev
 
 1. git clone <repository-url> this repository
 2. `npm i`
