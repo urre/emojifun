@@ -1,10 +1,6 @@
-:root {
-	--profile: #6cd4bc;
-	--profiledark: #cf0bed;
-}
-
 * {
-	font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto',sans-serif;
+	font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto',
+		sans-serif;
 	box-sizing: border-box;
 }
 
@@ -31,7 +27,7 @@ a {
 	text-decoration: none;
 }
 
-@media screen and (min-width: 80em) {
+@media screen and (min-width: 60em) {
 	.app {
 		display: flex;
 	}
@@ -42,7 +38,7 @@ a {
 	flex: 1;
 }
 
-@media screen and (min-width: 80em) {
+@media screen and (min-width: 60em) {
 	.view {
 		display: flex;
 	}
@@ -55,7 +51,7 @@ a {
 	background-color: #f7f7f7;
 }
 
-@media screen and (min-width: 80em) {
+@media screen and (min-width: 60em) {
 	.view-search {
 		display: flex;
 	}
@@ -68,7 +64,7 @@ a {
 	align-items: center;
 }
 
-@media screen and (min-width: 80em) {
+@media screen and (min-width: 60em) {
 	.view-body {
 		display: flex;
 	}
@@ -82,18 +78,25 @@ a {
 	padding: 1rem;
 }
 
+.sidebar a {
+	display: block;
+}
+
 .sidebar h1 {
 	margin: 0;
 	padding: 0;
 	line-height: 1;
-	text-orientation: upright;
-	writing-mode: tb-rl;
 	font-size: 1rem;
+	transform: rotate(-270deg);
+	transform-origin: bottom left;
 	text-transform: uppercase;
 	color: white;
+	position: absolute;
+	left: 1rem;
+	top: .25rem;
 }
 
-@media screen and (min-width: 80em) {
+@media screen and (min-width: 60em) {
 	.sidebar {
 		display: block;
 	}
@@ -119,13 +122,13 @@ a {
 .search {
 	padding: .75rem;
 	width: 100%;
-	border-radius: 3px;
 	border: none;
 	font-size: 1.15rem;
 	outline: none;
+	background: #eee;
 }
 
-@media screen and (min-width: 80em) {
+@media screen and (min-width: 60em) {
 	.search {
 		padding: 2rem;
 		font-size: 1.5rem;
@@ -138,7 +141,7 @@ a {
 	max-height: 50vh;
 }
 
-@media screen and (min-width: 80em) {
+@media screen and (min-width: 60em) {
 	.emoji-container {
 		max-height: 100vh;
 	}
@@ -148,8 +151,7 @@ a {
 	padding: 2rem;
 }
 
-
-@media screen and (min-width: 80em) {
+@media screen and (min-width: 60em) {
 	.emoji-result {
 		width: 30rem;
 	}
@@ -290,16 +292,9 @@ li[data-description='undefined'] {
 .footer {
 	margin-top: 10vh;
 	background-color: white;
-	display: grid;
-	grid-gap: 1rem;
-	grid-template-columns: repeat(3, 1fr);
+	display: flex;
+	justify-content: space-between;
 	align-items: center;
-}
-
-@media screen and (min-width: 80em) {
-	.footer {
-
-	}
 }
 
 .footer-copy {

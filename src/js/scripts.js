@@ -1,6 +1,7 @@
 import Clipboard from 'clipboard'
+import 'whatwg-fetch'
 
-const endpoint = `${window.location.href}/data/emojis.json`
+const endpoint = 'https://urre.github.io/emojifun/data/emojis.json'
 const emojis = []
 const searchInput = document.querySelector('.search')
 const searchForm = document.querySelector('.search-form')
@@ -15,15 +16,29 @@ const emojiResultDescription = document.querySelector(
 const buttonEmojpedia = document.querySelector('.button-emojipedia')
 const buttonCopy = document.querySelector('.button-copy')
 
-fetch(endpoint)
-	.then(blob => blob.json())
-	.then(data => emojis.push(...data))
-	.then(
-		setTimeout(() => {
-			renderResult(emojis)
-		}, 500)
-	)
-	.catch(err => {})
+const getEmojis = () => {
+	const parser = document.createElement('a')
+	parser.href = window.location.href
+
+	fetch(endpoint)
+		.then(blob => blob.json())
+		.then(data => emojis.push(...data))
+		.then(
+			setTimeout(() => {
+				renderResult(emojis)
+
+				if (parser.href.includes('=')) {
+					const searchquery = decodeURIComponent(
+						parser.href.substring(parser.href.indexOf('=') + 1)
+					)
+					searchInput.setAttribute('value', searchquery)
+					const matchInArray = findEmoji(searchquery, emojis)
+					renderResult(matchInArray)
+				}
+			}, 500)
+		)
+		.catch(err => {})
+}
 
 const renderResult = arr => {
 	const html = arr
@@ -65,11 +80,11 @@ function renderEmoji(e) {
 	const slug = slugify(e.target.dataset.description)
 	emojiResult.value = emoj
 	emojiResultDescription.innerHTML = description
-	emojiResultClipboard.value = emoj
 	buttonEmojpedia.href = `https://emojipedia.org/${slug}`
 }
 
-function searchEmoji() {
+function searchEmoji(e) {
+	window.history.pushState('', '', `?s=${encodeURIComponent(this.value)}`)
 	const matchInArray = findEmoji(this.value, emojis)
 	renderResult(matchInArray)
 }
@@ -90,8 +105,9 @@ const initClipboard = () => {
 	})
 }
 
-searchInput.addEventListener('change', searchEmoji)
 searchInput.addEventListener('keyup', searchEmoji)
+searchForm.addEventListener('submit', e => e.preventDefault())
 emojiSuggestions.addEventListener('click', renderEmoji)
 
 initClipboard()
+getEmojis()
