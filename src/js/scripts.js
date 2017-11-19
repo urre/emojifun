@@ -1,7 +1,7 @@
 import Clipboard from 'clipboard'
 import 'whatwg-fetch'
 
-const endpoint = 'https://urre.github.io/emojifun/data/emojis.json'
+const endpoint = 'https://unpkg.com/emoji.json@5.0.0/emoji.json'
 const emojis = []
 const searchInput = document.querySelector('.search')
 const searchForm = document.querySelector('.search-form')
@@ -26,7 +26,6 @@ const getEmojis = () => {
 		.then(
 			setTimeout(() => {
 				renderResult(emojis)
-
 				if (parser.href.includes('=')) {
 					const searchquery = decodeURIComponent(
 						parser.href.substring(parser.href.indexOf('=') + 1)
@@ -43,10 +42,10 @@ const getEmojis = () => {
 const renderResult = arr => {
 	const html = arr
 		.map(emojiSymbol => {
-			const { emoji, description } = emojiSymbol
+			const { char, name } = emojiSymbol
 			return `
-			<li data-description="${description}">
-				${emoji}
+			<li data-description="${name}">
+				${char}
 			</li>
 			`
 		})
@@ -57,9 +56,7 @@ const renderResult = arr => {
 }
 
 const findEmoji = (wordToMatch, emojis) => {
-	return emojis.filter(emoji =>
-		emoji.aliases.some(alias => alias.includes(wordToMatch))
-	)
+	return emojis.filter(emoji => emoji.name.includes(wordToMatch))
 }
 
 const slugify = text => {
