@@ -1,8 +1,8 @@
 {
 	"name": "emojifun",
-	"version": "0.1.0",
+	"version": "0.2.0",
 	"author": "Urban Sanden",
-	"description": "Simple emoji search",
+	"description": "Emoji fun - Simple emoji search",
 	"scripts": {
 		"start": "webpack-dev-server --config webpack.config.dev.js",
 		"build": "NODE_ENV=production webpack --config webpack.config.prod.js --progress --profile --colors"
