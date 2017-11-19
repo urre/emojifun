@@ -44,7 +44,7 @@ const renderResult = arr => {
 		.map(emojiSymbol => {
 			const { char, name } = emojiSymbol
 			return `
-			<li data-description="${name}">
+			<li data-description="${name}" aria-label="${name}" title="${name}">
 				${char}
 			</li>
 			`
