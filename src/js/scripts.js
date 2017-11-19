@@ -26,7 +26,7 @@ const getEmojis = () => {
 		.then(
 			setTimeout(() => {
 				renderResult(emojis)
-				if (parser.href.includes('=')) {
+				if (parser.href.includes('?s=')) {
 					const searchquery = decodeURIComponent(
 						parser.href.substring(parser.href.indexOf('=') + 1)
 					)
@@ -44,8 +44,12 @@ const renderResult = arr => {
 		.map(emojiSymbol => {
 			const { char, name } = emojiSymbol
 			return `
-			<li data-description="${name}" aria-label="${name}" title="${name}">
-				${char}
+			<li id="${slugify(cleanup(name))}" data-description="${cleanup(
+				name
+			)}" data-slug="${slugify(cleanup(name))}" aria-label="${cleanup(
+				name
+			)}" title="${cleanup(name)}">
+				${cleanup(char)}
 			</li>
 			`
 		})
@@ -57,6 +61,10 @@ const renderResult = arr => {
 
 const findEmoji = (wordToMatch, emojis) => {
 	return emojis.filter(emoji => emoji.name.includes(wordToMatch))
+}
+
+const cleanup = text => {
+	return text.replace('⊛ ', '')
 }
 
 const slugify = text => {
@@ -74,10 +82,11 @@ const slugify = text => {
 function renderEmoji(e) {
 	const emoj = e.target.innerText
 	const description = e.target.dataset.description
-	const slug = slugify(e.target.dataset.description.replace('⊛ ', ''))
+	const slug = slugify(e.target.dataset.description)
 	emojiResult.value = emoj
 	emojiResultDescription.innerHTML = description
 	buttonEmojpedia.href = `https://emojipedia.org/${slug}`
+	window.history.pushState('', '', `?emoji=${encodeURIComponent(slug)}`)
 }
 
 function searchEmoji(e) {
@@ -85,6 +94,32 @@ function searchEmoji(e) {
 	window.history.pushState('', '', `?s=${encodeURIComponent(searchPhrase)}`)
 	const matchInArray = findEmoji(searchPhrase, emojis)
 	renderResult(matchInArray)
+}
+
+const getQuery = () => {
+	setTimeout(() => {
+		const parser = document.createElement('a')
+		parser.href = window.location.href
+
+		if (parser.href.includes('?emoji=')) {
+			let searchquery = decodeURIComponent(
+				parser.href.substring(parser.href.indexOf('?emoji=') + 7)
+			)
+
+			const emojiname = document.querySelector(`[data-slug='${searchquery}']`)
+				.innerHTML
+
+			emojiResult.value = emojiname.trim()
+
+			emojiResultDescription.innerHTML = searchquery
+			buttonEmojpedia.href = `https://emojipedia.org/${slugify(searchquery)}`
+			document.getElementById(`${searchquery}`).scrollIntoView()
+			document.getElementById(`${searchquery}`).classList.add('active')
+			setTimeout(() => {
+				document.getElementById(`${searchquery}`).classList.remove('active')
+			}, 600)
+		}
+	}, 600)
 }
 
 const initClipboard = () => {
@@ -110,3 +145,4 @@ emojiSuggestions.addEventListener('click', renderEmoji)
 
 initClipboard()
 getEmojis()
+getQuery()

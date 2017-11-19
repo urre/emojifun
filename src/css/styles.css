@@ -192,6 +192,10 @@ li:hover {
 	transform: translateY(-.25rem);
 }
 
+li.active {
+	background-color: greenyellow;
+}
+
 @media screen and (min-width: 40em) {
 	li {
 		padding: 1rem;
