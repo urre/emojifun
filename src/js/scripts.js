@@ -74,14 +74,18 @@ const slugify = text => {
 function renderEmoji(e) {
 	const emoj = e.target.innerText
 	const description = e.target.dataset.description
-	const slug = slugify(e.target.dataset.description)
+	const slug = slugify(e.target.dataset.description.replace('⊛ ', ''))
 	emojiResult.value = emoj
 	emojiResultDescription.innerHTML = description
 	buttonEmojpedia.href = `https://emojipedia.org/${slug}`
 }
 
 function searchEmoji(e) {
-	window.history.pushState('', '', `?s=${encodeURIComponent(this.value)}`)
+	window.history.pushState(
+		'',
+		'',
+		`?s=${encodeURIComponent(this.value).replace('⊛ ', '').toLowerCase()}`
+	)
 	const matchInArray = findEmoji(this.value, emojis)
 	renderResult(matchInArray)
 }
@@ -90,7 +94,8 @@ const initClipboard = () => {
 	var clipboard = new Clipboard('.button-copy')
 
 	clipboard.on('success', function(e) {
-		buttonCopy.innerHTML = `Copied ${e.text} to clipboard`
+		const copythis = e.text.replace('⊛ ', '')
+		buttonCopy.innerHTML = `Copied ${copythis} to clipboard`
 		buttonCopy.classList.add('is-success')
 
 		setTimeout(() => {
