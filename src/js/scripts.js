@@ -81,12 +81,9 @@ function renderEmoji(e) {
 }
 
 function searchEmoji(e) {
-	window.history.pushState(
-		'',
-		'',
-		`?s=${encodeURIComponent(this.value).replace('⊛ ', '').toLowerCase()}`
-	)
-	const matchInArray = findEmoji(this.value, emojis)
+	const searchPhrase = this.value.toLowerCase()
+	window.history.pushState('', '', `?s=${encodeURIComponent(searchPhrase)}`)
+	const matchInArray = findEmoji(searchPhrase, emojis)
 	renderResult(matchInArray)
 }
 
