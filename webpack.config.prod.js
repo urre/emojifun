@@ -50,40 +50,6 @@ module.exports = {
 				test: /\.(jpe?g|png|gif|svg)$/,
 				exclude: /(node_modules)/,
 				loader: 'url-loader?limit=8192'
-			},
-			{
-				test: /\.woff(\?v=\d+\.\d+\.\d+)?$/,
-				loader: 'url',
-				query: {
-					limit: 100000,
-					mimetype: 'application/font-woff',
-					name: 'public/fonts/[hash].[ext]'
-				}
-			},
-			{
-				test: /\.woff2(\?v=\d+\.\d+\.\d+)?$/,
-				loader: 'url',
-				query: {
-					limit: 100000,
-					mimetype: 'application/font-woff',
-					name: 'public/fonts/[hash].[ext]'
-				}
-			},
-			{
-				test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/,
-				loader: 'url',
-				query: {
-					limit: 100000,
-					mimetype: 'application/octet-stream',
-					name: 'public/fonts/[hash].[ext]'
-				}
-			},
-			{
-				test: /\.eot(\?v=\d+\.\d+\.\d+)?$/,
-				loader: 'file',
-				query: {
-					name: 'public/fonts/[hash].[ext]'
-				}
 			}
 		]
 	}
