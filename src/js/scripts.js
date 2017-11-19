@@ -108,5 +108,3 @@ emojiSuggestions.addEventListener('click', renderEmoji)
 
 initClipboard()
 getEmojis()
-
-console.log('travis test')

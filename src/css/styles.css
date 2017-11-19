@@ -203,6 +203,10 @@ li[data-description='undefined'] {
 	display: none;
 }
 
+li:last-child {
+	flex-grow: 0;
+}
+
 .button {
 	align-items: center;
 	border: 1px solid transparent;
