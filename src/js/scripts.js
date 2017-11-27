@@ -23,20 +23,9 @@ const getEmojis = () => {
 	fetch(endpoint)
 		.then(blob => blob.json())
 		.then(data => emojis.push(...data))
-		.then(
-			setTimeout(() => {
-				renderResult(emojis)
-				if (parser.href.includes('?s=')) {
-					const searchquery = decodeURIComponent(
-						parser.href.substring(parser.href.indexOf('=') + 1)
-					)
-					searchInput.setAttribute('value', searchquery)
-					const matchInArray = findEmoji(searchquery, emojis)
-					renderResult(matchInArray)
-				}
-			}, 500)
-		)
-		.catch(err => {})
+		.then(data => renderResult(emojis))
+		.then(data => getQuery())
+		.catch(err => { })
 }
 
 const renderResult = arr => {
@@ -45,10 +34,10 @@ const renderResult = arr => {
 			const { char, name } = emojiSymbol
 			return `
 			<li id="${slugify(cleanup(name))}" data-description="${cleanup(
-				name
-			)}" data-slug="${slugify(cleanup(name))}" aria-label="${cleanup(
-				name
-			)}" title="${cleanup(name)}">
+					name
+				)}" data-slug="${slugify(cleanup(name))}" aria-label="${cleanup(
+					name
+				)}" title="${cleanup(name)}">
 				${cleanup(char)}
 			</li>
 			`
@@ -56,7 +45,7 @@ const renderResult = arr => {
 		.join('')
 
 	emojiSuggestions.innerHTML = html
-	loader.classList.remove('loading')
+	loader.classList.add('loaded')
 }
 
 const findEmoji = (wordToMatch, emojis) => {
@@ -125,7 +114,7 @@ const getQuery = () => {
 const initClipboard = () => {
 	var clipboard = new Clipboard('.button-copy')
 
-	clipboard.on('success', function(e) {
+	clipboard.on('success', function (e) {
 		const copythis = e.text.replace('⊛ ', '')
 		buttonCopy.innerHTML = `Copied ${copythis} to clipboard`
 		buttonCopy.classList.add('is-success')
@@ -145,4 +134,3 @@ emojiSuggestions.addEventListener('click', renderEmoji)
 
 initClipboard()
 getEmojis()
-getQuery()
