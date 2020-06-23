@@ -72,38 +72,6 @@ a {
 	}
 }
 
-.sidebar {
-	display: none;
-	background-color: #191919;
-	width: 50px;
-	height: 100vh;
-	padding: 1rem;
-}
-
-.sidebar a {
-	display: block;
-}
-
-.sidebar h1 {
-	margin: 0;
-	padding: 0;
-	line-height: 1;
-	font-size: 1rem;
-	transform: rotate(-270deg);
-	transform-origin: bottom left;
-	text-transform: uppercase;
-	color: white;
-	position: absolute;
-	left: 1rem;
-	top: .25rem;
-}
-
-@media screen and (min-width: 60em) {
-	.sidebar {
-		display: block;
-	}
-}
-
 .emoji-info {
 	background-color: #fcf3d6;
 }
@@ -161,12 +129,6 @@ a {
 .emoji-result {
 	padding: 2rem;
 	text-align: center;
-}
-
-@media screen and (min-width: 60em) {
-	.emoji-result {
-
-	}
 }
 
 .emoji-result-emoji {

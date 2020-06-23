@@ -1,14 +1,17 @@
 # Emoji fun
 
-[![Build Status](https://travis-ci.org/urre/emojifun.svg?branch=master)](https://travis-ci.org/urre/emojifun)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
 
-Simple emoji search!
+## Simple emoji search!
 
-![](https://res.cloudinary.com/urre/image/upload/v1505463469/nz0t1h9xozqipkatbiad.png)
+![shotsnapp-1592937855 136](https://user-images.githubusercontent.com/307676/85444139-55597480-b592-11ea-8c16-e1535b53bbcb.png)
 
-## Dev
++ No dependencies
++ HTML, CSS and some vanilla JS
++ Hosted on Github Pages
+
+## Develop
 
 1. git clone <repository-url> this repository
 2. `npm i`
-3. Develop: `npm start` and open up `http://localhost:8080/`
+3. `npm start` and open up `http://localhost:8080/`
