@@ -114,7 +114,7 @@ a {
 
 .emoji-result-description {
 	font-size: 2.5em;
-	max-width: 30rem;
+
 }
 
 .search-form-wrapper {
@@ -160,11 +160,12 @@ a {
 
 .emoji-result {
 	padding: 2rem;
+	text-align: center;
 }
 
 @media screen and (min-width: 60em) {
 	.emoji-result {
-		width: 30rem;
+
 	}
 }
 
@@ -319,11 +320,12 @@ li:last-child {
 	margin-top: 10vh;
 	background-color: white;
 	display: flex;
-	justify-content: space-between;
+	justify-content: center;
 	align-items: center;
 }
 
 .footer-copy {
 	margin: 0;
 	font-size: .85rem;
+	margin-right: 1rem;
 }

@@ -125,7 +125,7 @@ const initClipboard = () => {
         copyButton.innerText = `Copied ${toCopy} to clipboard`;
 
         setTimeout(function () {
-          copyButton.innerText = "opy Emoji to clipboard";
+          copyButton.innerText = "Copy Emoji to clipboard";
           copyButton.classList.remove("is-success");
         }, 2000);
       },
