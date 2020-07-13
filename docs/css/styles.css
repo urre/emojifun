@@ -49,7 +49,8 @@ a {
 	display: flex;
 	flex-direction: column;
 	flex: 35%;
-	background-color: #f7f7f7;
+	background-color: white;
+	border-right: 1px solid rgb(230, 230, 230);
 }
 
 @media screen and (min-width: 60em) {
@@ -88,6 +89,7 @@ a {
 .search-form-wrapper {
 	position: relative;
 	width: 100%;
+	padding: 1rem;
 }
 
 .search {
@@ -98,16 +100,11 @@ a {
 	background: #eee;
 	-webkit-appearance: none;
 	width: 100%;
+	border-radius: 8px;
 }
 
 .search:focus {
 	font-size: inherit;
-}
-
-@media screen and (min-width: 60em) {
-	.search {
-		padding: 2rem;
-	}
 }
 
 .emoji-container {

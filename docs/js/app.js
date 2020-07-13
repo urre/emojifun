@@ -32,7 +32,7 @@ const renderResult = (arr) => {
     .map((emojiSymbol) => {
       const { char, name } = emojiSymbol;
       return `
-			<li id="${slugify(cleanup(name))}" data-description="${cleanup(
+			<li tabindex="0" id="${slugify(cleanup(name))}" data-description="${cleanup(
         name
       )}" data-slug="${slugify(cleanup(name))}" aria-label="${cleanup(
         name
@@ -116,8 +116,6 @@ const initClipboard = () => {
   copyButton.addEventListener("click", (e) => {
     e.preventDefault();
     const toCopy = document.querySelector("#clip").value;
-
-    console.log(toCopy);
 
     navigator.clipboard.writeText(toCopy).then(
       function () {
