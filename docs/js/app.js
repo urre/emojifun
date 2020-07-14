@@ -5,6 +5,8 @@ const emojis = [];
 const searchInput = document.querySelector(".search");
 const searchForm = document.querySelector(".search-form");
 const loader = document.querySelector(".loader");
+const copyButton = document.querySelector(".button-copy");
+const copyURLButton = document.querySelector(".button-copy-url");
 const emojiSuggestions = document.querySelector(".emoji-suggestions");
 const emojiContainer = document.querySelector(".emoji-container");
 const emojiResult = document.querySelector(".emoji-result-emoji");
@@ -13,6 +15,7 @@ const emojiResultDescription = document.querySelector(
   ".emoji-result-description"
 );
 const buttonEmojpedia = document.querySelector(".button-emojipedia");
+const buttonUnicode = document.querySelector(".button-unicode");
 const buttonCopy = document.querySelector(".button-copy");
 
 const getEmojis = () => {
@@ -23,6 +26,7 @@ const getEmojis = () => {
     .then((blob) => blob.json())
     .then((data) => emojis.push(...data))
     .then((data) => renderResult(emojis))
+    .then((data) => focusFirst())
     .then((data) => getQuery())
     .catch((err) => {});
 };
@@ -30,13 +34,13 @@ const getEmojis = () => {
 const renderResult = (arr) => {
   const html = arr
     .map((emojiSymbol) => {
-      const { char, name } = emojiSymbol;
+      const { char, name, codes } = emojiSymbol;
       return `
 			<li tabindex="0" id="${slugify(cleanup(name))}" data-description="${cleanup(
         name
-      )}" data-slug="${slugify(cleanup(name))}" aria-label="${cleanup(
-        name
-      )}" title="${cleanup(name)}">
+      )}" data-code="${slugify(cleanup(codes))}" data-slug="${slugify(
+        cleanup(name)
+      )}" aria-label="${cleanup(name)}" title="${cleanup(name)}">
 				${cleanup(char)}
 			</li>
 			`;
@@ -45,6 +49,10 @@ const renderResult = (arr) => {
 
   emojiSuggestions.innerHTML = html;
   loader.classList.add("loaded");
+};
+
+const focusFirst = () => {
+  emojiSuggestions.querySelector("li").focus();
 };
 
 const findEmoji = (wordToMatch, emojis) => {
@@ -70,6 +78,7 @@ const slugify = (text) => {
 const renderEmoji = (e) => {
   var emoji = e.target.innerText;
   var description = e.target.dataset.description;
+  var code = e.target.dataset.code;
   var slug = slugify(e.target.dataset.description);
 
   if (e.code === "ArrowRight") {
@@ -105,6 +114,7 @@ const renderEmoji = (e) => {
   emojiResult.value = emoji;
   emojiResultDescription.innerHTML = description;
   buttonEmojpedia.href = `https://emojipedia.org/${slug}`;
+  buttonUnicode.href = `https://unicode.org/emoji/charts/emoji-list.html#${code}`;
   window.history.pushState("", "", `?emoji=${encodeURIComponent(slug)}`);
 };
 
@@ -141,9 +151,21 @@ const getQuery = () => {
   }, 600);
 };
 
-const initClipboard = () => {
-  const copyButton = document.querySelector(".button-copy");
+const copyURL = () => {
+  copyURLButton.addEventListener("click", () => {
+    navigator.clipboard.writeText(window.location.href).then(() => {
+      copyURLButton.classList.add("is-success");
+      copyURLButton.innerText = `Copied URL`;
 
+      setTimeout(function () {
+        copyURLButton.innerText = "Copy URL";
+        copyURLButton.classList.remove("is-success");
+      }, 2000);
+    });
+  });
+};
+
+const initClipboard = () => {
   copyButton.addEventListener("click", (e) => {
     e.preventDefault();
     const toCopy = document.querySelector("#clip").value;
@@ -153,10 +175,10 @@ const initClipboard = () => {
         copyButton.blur();
 
         copyButton.classList.add("is-success");
-        copyButton.innerText = `Copied ${toCopy} to clipboard`;
+        copyButton.innerText = `Copied ${toCopy}`;
 
         setTimeout(function () {
-          copyButton.innerText = "Copy Emoji to clipboard";
+          copyButton.innerText = "Copy Emoji";
           copyButton.classList.remove("is-success");
         }, 2000);
       },
@@ -173,4 +195,5 @@ emojiSuggestions.addEventListener("click", renderEmoji);
 emojiSuggestions.addEventListener("keyup", renderEmoji);
 
 initClipboard();
+copyURL();
 getEmojis();
