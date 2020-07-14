@@ -16,17 +16,17 @@
 
 	<meta itemprop="name" content="Emoji fun 😺">
 	<meta itemprop="description" content="Simple emoji search">
-	<meta itemprop="image" content="https://user-images.githubusercontent.com/307676/85444139-55597480-b592-11ea-8c16-e1535b53bbcb.pngg">
+	<meta itemprop="image"
+		content="https://user-images.githubusercontent.com/307676/87461723-16599480-c60f-11ea-9cc0-c9358309ae1b.jpeg">
 
-	<meta property="og:url" content="https://urre.github.io/emojifun/">
+
 	<meta property="og:type" content="website">
-	<meta property="og:image" content="https://user-images.githubusercontent.com/307676/85444139-55597480-b592-11ea-8c16-e1535b53bbcb.png">
-
 	<meta property="og:site_name" content="Emoji fun 😺">
 	<meta property="og:locale" content="en_US">
 	<meta property="article:author" content="Urban Sanden">
 
-	<meta property="og:image" content="https://user-images.githubusercontent.com/307676/85444139-55597480-b592-11ea-8c16-e1535b53bbcb.png">
+	<meta property="og:image"
+		content="https://user-images.githubusercontent.com/307676/87461723-16599480-c60f-11ea-9cc0-c9358309ae1b.jpeg">
 	<meta property="og:title" content="Emoji fun 😺">
 	<meta property="og:url" content="https://urre.github.io/emojifun/">
 	<meta property="og:description" content="Simple emoji search">
@@ -37,90 +37,71 @@
 	<meta name="twitter:url" content="https://urre.github.io/emojifun/">
 	<meta name="twitter:title" content="Emoji fun 😺">
 	<meta name="twitter:description" content="Simple emoji search">
-	<meta name="twitter:image" content="https://user-images.githubusercontent.com/307676/85444139-55597480-b592-11ea-8c16-e1535b53bbcb.png">
-
-	<script async defer src="https://buttons.github.io/buttons.js"></script>
-
+	<meta name="twitter:image"
+		content="https://user-images.githubusercontent.com/307676/87461723-16599480-c60f-11ea-9cc0-c9358309ae1b.jpeg">
 	<link rel="stylesheet" href="css/styles.css">
 
 
 </head>
 
-<body>
+<body class="app">
 
-	<main class="app" role="main">
-
-		<main class="view">
-
-			<div class="view-search">
-				<form class="search-form">
-					<div class="search-form-wrapper">
-						<input type="search" class="search" placeholder="Search 4022 emojis: woman, hands, cat..." autofocus>
-					</div>
-				</form>
-
-				<div class="emoji-container">
-					<div class="loader"></div>
-					<ul class="emoji-suggestions" aria-labelledby="emoji">
-					</ul>
-				</div>
-
+	<aside class="sidebar">
+		<form class="search-form">
+			<div class="search-form-wrapper">
+				<input type="search" class="search" placeholder="Search 4022 emojis: woman, hands, cat..." autofocus>
 			</div>
+		</form>
 
-			<div class="view-body">
-				<div class="emoji-result">
-					<input class="emoji-result-emoji" id="clip" value="😀">
-					<h2 class="emoji-result-description">grinning face</h2>
-					<div class="emoji-actions">
-						<button class="button button-copy" data-clipboard-target="#clip">Copy Emoji to clipboard</button>
-						<a class="button button-emojipedia" href="http://emojipedia.org/grinning-face">Explore on Emojipedia</a>
-					</div>
+		<div class="emoji-container">
+			<div class="loader"></div>
+			<ul class="emoji-suggestions" aria-labelledby="emoji">
+			</ul>
+		</div>
 
-					<footer class="footer" role="contentinfo">
-						<p class="footer-copy">By <a href="https://urre.me">Urban Sanden</a></p>
-						<span>
-							<a class="twitter-share-button" href="https://twitter.com/intent/tweet?text=😀+Emoji+fun">Tweet</a>
-							<a class="github-button" href="https://github.com/urre/emojifun"
-								aria-label="Star urre/emojifun on GitHub">Star</a>
-						</span>
-					</footer>
-				</div>
+	</aside>
+
+	<main role="main">
+
+		<div class="emoji-output">
+			<input class="emoji-result-emoji" id="clip" value="😀">
+			<h2 class="emoji-result-description">grinning face</h2>
+			<div class="emoji-actions">
+				<button class="button button-copy" data-clipboard-target="#clip">Copy Emoji to clipboard</button>
+				<a class="button button-emojipedia" href="http://emojipedia.org/grinning-face">Explore on Emojipedia</a>
 			</div>
+		</div>
 
-		</main>
+		<footer class="footer" role="contentinfo">
+			<p class="footer-copy">By <a href="https://urre.me">Urban Sanden</a>
 
-	</main>
+				<a class="github-button" href="https://github.com/urre/emojifun" aria-label="Star urre/emojifun on GitHub">
 
-	<script>
-		window.twttr = (function (d, s, id) {
-			var js, fjs = d.getElementsByTagName(s)[0],
-				t = window.twttr || {};
-			if (d.getElementById(id)) return t;
-			js = d.createElement(s);
-			js.id = id;
-			js.src = "https://platform.twitter.com/widgets.js";
-			fjs.parentNode.insertBefore(js, fjs);
+					<svg style="display: inline-block; margin-left: 2rem; margin-right: .5rem; vertical-align: middle; "
+						xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+						stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+						class="feather feather-git-branch">
+						<line x1="6" y1="3" x2="6" y2="15"></line>
+						<circle cx="18" cy="6" r="3"></circle>
+						<circle cx="6" cy="18" r="3"></circle>
+						<path d="M18 9a9 9 0 0 1-9 9"></path>
+					</svg>
+					Github</a>
 
-			t._e = [];
-			t.ready = function (f) {
-				t._e.push(f);
-			};
+			</p>
+		</footer>
+		</div>
 
-			return t;
-		}(document, "script", "twitter-wjs"));
-	</script>
+		<script async src="https://www.googletagmanager.com/gtag/js?id=UA-5407647-74"></script>
+		<script>
+			window.dataLayer = window.dataLayer || [];
+			function gtag() { dataLayer.push(arguments) };
+			gtag('js', new Date());
 
+			gtag('config', 'UA-5407647-74');
+		</script>
 
-	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-5407647-74"></script>
-	<script>
-		window.dataLayer = window.dataLayer || [];
-		function gtag() { dataLayer.push(arguments) };
-		gtag('js', new Date());
-
-		gtag('config', 'UA-5407647-74');
-	</script>
-
-	<script type="module" src="js/app.js"></script>
+		<script type="module" src="js/app.js"></script>
 
 </body>
 

@@ -4,7 +4,7 @@
 
 ## Simple emoji search!
 
-![shotsnapp-1592937855 136](https://user-images.githubusercontent.com/307676/85444139-55597480-b592-11ea-8c16-e1535b53bbcb.png)
+![screenshot](https://user-images.githubusercontent.com/307676/87461723-16599480-c60f-11ea-9cc0-c9358309ae1b.jpeg)
 
 + No dependencies
 + HTML, CSS and some vanilla JS
@@ -14,4 +14,4 @@
 
 1. git clone <repository-url> this repository
 2. `npm i`
-3. `npm start` and open up `http://localhost:8080/`
+3. `npm start` and open up `http://localhost:5000/`

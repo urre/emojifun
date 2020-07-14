@@ -67,22 +67,53 @@ const slugify = (text) => {
     .replace(/\-\-+/g, "-");
 };
 
-function renderEmoji(e) {
-  const emoj = e.target.innerText;
-  const description = e.target.dataset.description;
-  const slug = slugify(e.target.dataset.description);
-  emojiResult.value = emoj;
+const renderEmoji = (e) => {
+  var emoji = e.target.innerText;
+  var description = e.target.dataset.description;
+  var slug = slugify(e.target.dataset.description);
+
+  if (e.code === "ArrowRight") {
+    emoji = e.target.nextElementSibling.innerText;
+    description = e.target.nextElementSibling.dataset.description;
+    slug = slugify(e.target.nextElementSibling.dataset.description);
+    e.target.nextElementSibling.focus();
+  } else if (e.code === "ArrowLeft") {
+    emoji = e.target.previousElementSibling.innerText;
+    description = e.target.previousElementSibling.dataset.description;
+    slug = slugify(e.target.previousElementSibling.dataset.description);
+    e.target.previousElementSibling.focus();
+  } else if (e.code === "ArrowDown") {
+    var currentIndex = [...e.target.parentNode.children].indexOf(e.target);
+    var nextEmoji = document.querySelectorAll(".emoji-suggestions li")[
+      currentIndex + 9
+    ];
+    emoji = nextEmoji.innerText;
+    description = nextEmoji.dataset.description;
+    slug = slugify(nextEmoji.dataset.description);
+    nextEmoji.focus();
+  } else if (e.code === "ArrowUp") {
+    var currentIndex = [...e.target.parentNode.children].indexOf(e.target);
+    var nextEmoji = document.querySelectorAll(".emoji-suggestions li")[
+      currentIndex - 9
+    ];
+    emoji = nextEmoji.innerText;
+    description = nextEmoji.dataset.description;
+    slug = slugify(nextEmoji.dataset.description);
+    nextEmoji.focus();
+  }
+
+  emojiResult.value = emoji;
   emojiResultDescription.innerHTML = description;
   buttonEmojpedia.href = `https://emojipedia.org/${slug}`;
   window.history.pushState("", "", `?emoji=${encodeURIComponent(slug)}`);
-}
+};
 
-function searchEmoji(e) {
-  const searchPhrase = this.value.toLowerCase();
+const searchEmoji = (e) => {
+  const searchPhrase = e.currentTarget.value.toLowerCase();
   window.history.pushState("", "", `?s=${encodeURIComponent(searchPhrase)}`);
   const matchInArray = findEmoji(searchPhrase, emojis);
   renderResult(matchInArray);
-}
+};
 
 const getQuery = () => {
   setTimeout(() => {
@@ -139,6 +170,7 @@ const initClipboard = () => {
 searchInput.addEventListener("keyup", searchEmoji);
 searchForm.addEventListener("submit", (e) => e.preventDefault());
 emojiSuggestions.addEventListener("click", renderEmoji);
+emojiSuggestions.addEventListener("keyup", renderEmoji);
 
 initClipboard();
 getEmojis();
