@@ -6,8 +6,7 @@
 
 ![screenshot](https://user-images.githubusercontent.com/307676/87461723-16599480-c60f-11ea-9cc0-c9358309ae1b.jpeg)
 
-+ No dependencies
-+ HTML, CSS and some vanilla JS
++ HTML, CSS, Vanilla JS
 + Hosted on Github Pages
 
 ## Develop
