@@ -27,8 +27,7 @@ const getEmojis = () => {
     .then((data) => emojis.push(...data))
     .then((data) => renderResult(emojis))
     .then((data) => focusFirst())
-    .then((data) => getQuery())
-    .catch((err) => {});
+    .then((data) => getQuery());
 };
 
 const renderResult = (arr) => {
@@ -75,47 +74,50 @@ const slugify = (text) => {
     .replace(/\-\-+/g, "-");
 };
 
-const renderEmoji = (e) => {
-  var emoji = e.target.innerText;
-  var description = e.target.dataset.description;
-  var code = e.target.dataset.code;
-  var slug = slugify(e.target.dataset.description);
+const pickEmoji = (e) => {
+  renderEmoji(e.target);
+};
 
-  if (e.code === "ArrowRight") {
-    emoji = e.target.nextElementSibling.innerText;
-    description = e.target.nextElementSibling.dataset.description;
-    slug = slugify(e.target.nextElementSibling.dataset.description);
-    e.target.nextElementSibling.focus();
-  } else if (e.code === "ArrowLeft") {
-    emoji = e.target.previousElementSibling.innerText;
-    description = e.target.previousElementSibling.dataset.description;
-    slug = slugify(e.target.previousElementSibling.dataset.description);
-    e.target.previousElementSibling.focus();
-  } else if (e.code === "ArrowDown") {
-    var currentIndex = [...e.target.parentNode.children].indexOf(e.target);
-    var nextEmoji = document.querySelectorAll(".emoji-suggestions li")[
-      currentIndex + 9
-    ];
-    emoji = nextEmoji.innerText;
-    description = nextEmoji.dataset.description;
-    slug = slugify(nextEmoji.dataset.description);
-    nextEmoji.focus();
-  } else if (e.code === "ArrowUp") {
-    var currentIndex = [...e.target.parentNode.children].indexOf(e.target);
-    var nextEmoji = document.querySelectorAll(".emoji-suggestions li")[
-      currentIndex - 9
-    ];
-    emoji = nextEmoji.innerText;
-    description = nextEmoji.dataset.description;
-    slug = slugify(nextEmoji.dataset.description);
-    nextEmoji.focus();
+const renderEmoji = (emoji) => {
+  emojiResult.value = emoji.innerText;
+  emojiResultDescription.innerHTML = emoji.dataset.description;
+  buttonEmojpedia.href = `https://emojipedia.org/${slugify(
+    emoji.dataset.description
+  )}`;
+  buttonUnicode.href = `https://unicode.org/emoji/charts/emoji-list.html#${emoji.dataset.code}`;
+  window.history.pushState(
+    "",
+    "",
+    `?emoji=${encodeURIComponent(slugify(emoji.dataset.description))}`
+  );
+  emoji.focus();
+};
+
+const arrowKeys = (e) => {
+  const emoji = e.target;
+
+  switch (e.code) {
+    case "ArrowRight":
+      renderEmoji(emoji.nextElementSibling);
+      break;
+    case "ArrowLeft":
+      renderEmoji(emoji.previousElementSibling);
+      break;
+    case "ArrowDown":
+      var currentIndex = [...e.target.parentNode.children].indexOf(e.target);
+      var nextEmoji = document.querySelectorAll(".emoji-suggestions li")[
+        currentIndex + 9
+      ];
+      renderEmoji(nextEmoji);
+      break;
+    case "ArrowUp":
+      var currentIndex = [...e.target.parentNode.children].indexOf(e.target);
+      var nextEmoji = document.querySelectorAll(".emoji-suggestions li")[
+        currentIndex - 9
+      ];
+      renderEmoji(nextEmoji);
+      break;
   }
-
-  emojiResult.value = emoji;
-  emojiResultDescription.innerHTML = description;
-  buttonEmojpedia.href = `https://emojipedia.org/${slug}`;
-  buttonUnicode.href = `https://unicode.org/emoji/charts/emoji-list.html#${code}`;
-  window.history.pushState("", "", `?emoji=${encodeURIComponent(slug)}`);
 };
 
 const searchEmoji = (e) => {
@@ -165,7 +167,7 @@ const copyURL = () => {
   });
 };
 
-const initClipboard = () => {
+const copyEmoji = () => {
   copyButton.addEventListener("click", (e) => {
     e.preventDefault();
     const toCopy = document.querySelector("#clip").value;
@@ -189,11 +191,25 @@ const initClipboard = () => {
   });
 };
 
+const clearSearch = (e) => {
+  if (e.target.type === "search") {
+    searchForm.value = "";
+    const matchInArray = findEmoji("", emojis);
+    renderResult(matchInArray);
+    var uri = window.location.toString();
+    if (uri.indexOf("?") > 0) {
+      var clean_uri = uri.substring(0, uri.indexOf("?"));
+      window.history.replaceState({}, document.title, clean_uri);
+    }
+  }
+};
+
+document.addEventListener("click", clearSearch);
 searchInput.addEventListener("keyup", searchEmoji);
 searchForm.addEventListener("submit", (e) => e.preventDefault());
-emojiSuggestions.addEventListener("click", renderEmoji);
-emojiSuggestions.addEventListener("keyup", renderEmoji);
+emojiSuggestions.addEventListener("click", pickEmoji);
+emojiSuggestions.addEventListener("keyup", arrowKeys);
 
-initClipboard();
-copyURL();
 getEmojis();
+copyEmoji();
+copyURL();
