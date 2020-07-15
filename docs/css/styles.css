@@ -61,6 +61,7 @@ main {
   justify-content: center;
   align-items: center;
   height: 50vh;
+  padding: 1rem;
 }
 @media (min-width: 60em) {
   .footer {
@@ -70,7 +71,7 @@ main {
 
 .emoji-actions {
   display: grid;
-  grid-template-columns: 1fr;
+  grid-template-columns: 1fr 1fr;
   grid-gap: 0.5rem;
   margin-bottom: 2rem;
 }
@@ -141,6 +142,7 @@ main {
   overflow-y: scroll;
   -webkit-overflow-scrolling: touch;
   max-height: 170px;
+  border-bottom: 1px solid #f2f2f2;
   position: relative;
   padding: 0;
   margin: 0;
@@ -150,6 +152,7 @@ main {
 @media (min-width: 60em) {
   .emoji-container {
     max-height: calc(100vh - 100px);
+    border-bottom: none;
     height: 100vh;
   }
 }
@@ -184,7 +187,7 @@ ul {
   justify-content: center;
 }
 
-@media (min-width: 25em) {
+@media (min-width: 40em) {
   ul {
     grid-template-columns: repeat(9, calc(82px));
   }
