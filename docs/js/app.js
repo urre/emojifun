@@ -1,6 +1,6 @@
 /* Quick and simple :) */
 
-const emojiJSON = "/emojifun/data/emoji.json";
+const emojiJSON = "https://unpkg.com/emoji.json@12.1.1/emoji.json";
 const emojis = [];
 const searchInput = document.querySelector(".search");
 const searchForm = document.querySelector(".search-form");
