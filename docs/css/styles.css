@@ -44,7 +44,6 @@ a {
   .sidebar {
     display: flex;
     flex-direction: column;
-    /* flex: 35%; */
     height: initial;
   }
 }
@@ -56,10 +55,10 @@ a {
 }
 
 main {
-  display: flex;
+  /* display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
+  align-items: center; */
   height: 50vh;
   padding: 1rem;
 }
@@ -223,36 +222,19 @@ li[data-description="undefined"] {
   display: none;
 }
 
-.button {
+a.button,
+button {
   align-items: center;
-  border: 1px solid transparent;
+  border: 1px solid #dbdbdb;
   border-radius: 3px;
-  -webkit-box-shadow: none;
   box-shadow: none;
-
-  display: inline-flex;
+  text-align: center;
   font-size: 1rem;
-
-  justify-content: flex-start;
   line-height: 1.5;
-  padding-bottom: calc(0.375em - 1px);
-  padding-left: calc(0.625em - 1px);
-  padding-right: calc(0.625em - 1px);
-  padding-top: calc(0.375em - 1px);
-  position: relative;
-  vertical-align: top;
-  -webkit-touch-callout: none;
-  user-select: none;
-  background-color: #fff;
-  border-color: #dbdbdb;
+  padding: 0.5rem 1rem;
+  background-color: white;
   color: #363636;
   cursor: pointer;
-
-  justify-content: center;
-  padding-left: 0.75em;
-  padding-right: 0.75em;
-  text-align: center;
-  white-space: nowrap;
   text-decoration: none;
 }
 
