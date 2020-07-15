@@ -1,6 +1,6 @@
-/* Quick and simple. Yep, it's not even minified lol :) */
+/* Quick and simple :) */
 
-const emojiJSON = "https://unpkg.com/emoji.json@12.1.1/emoji.json";
+const emojiJSON = "/data/emoji.json";
 const emojis = [];
 const searchInput = document.querySelector(".search");
 const searchForm = document.querySelector(".search-form");
