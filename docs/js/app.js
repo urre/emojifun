@@ -1,6 +1,6 @@
 /* Quick and simple :) */
 
-const emojiJSON = "/data/emoji.json";
+const emojiJSON = "./data/emoji.json";
 const emojis = [];
 const searchInput = document.querySelector(".search");
 const searchForm = document.querySelector(".search-form");
