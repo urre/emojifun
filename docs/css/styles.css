@@ -224,6 +224,8 @@ li[data-description="undefined"] {
 
 a.button,
 button {
+  display: flex;
+  justify-content: center;
   align-items: center;
   border: 1px solid #dbdbdb;
   border-radius: 3px;
