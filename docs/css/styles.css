@@ -55,10 +55,6 @@ a {
 }
 
 main {
-  /* display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center; */
   height: 50vh;
   padding: 1rem;
 }
@@ -128,7 +124,7 @@ main {
   font-size: 1rem;
   outline: none;
   background: #eee;
-  -webkit-appearance: none;
+  appearance: none;
   width: 100%;
   border-radius: 8px;
 }

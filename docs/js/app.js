@@ -1,6 +1,6 @@
 /* Quick and simple :) */
 
-const emojiJSON = "https://unpkg.com/emoji.json@13.0.0/emoji.json";
+const emojiJSON = "https://unpkg.com/emoji.json@15.1.0/emoji.json";
 const emojis = [];
 const searchInput = document.querySelector(".search");
 const searchForm = document.querySelector(".search-form");
@@ -137,8 +137,9 @@ const getQuery = () => {
         parser.href.substring(parser.href.indexOf("?emoji=") + 7)
       );
 
-      const emojiname = document.querySelector(`[data-slug='${searchquery}']`)
-        .innerHTML;
+      const emojiname = document.querySelector(
+        `[data-slug='${searchquery}']`
+      ).innerHTML;
 
       emojiResult.value = emojiname.trim();
 
